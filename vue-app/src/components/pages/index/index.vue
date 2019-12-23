@@ -1,7 +1,11 @@
 <template>
   <div class="view-page">
     <div class="main">
-      <div class="content-1">
+      <div class="download-pdf" @click="ExportSavePdf(htmlTitle,nowTime)">
+        <img :src="icons.pdf" alt="">
+        <p>下载PDF</p>
+      </div>
+      <div class="content-1" id="pdfCentent">
         <div class="left">
           <div class="avatar">
             <img :src="me.avatar" alt="">
@@ -103,9 +107,17 @@
 </template>
 
 <script>
+// import dayjs from "dayjs";
+// const TDate = dayjs(new Date()).format("YYYYMMDDHHmmss");
+const TDate = "-" + new Date().getFullYear();
 export default {
   data() {
     return {
+      htmlTitle: "谢鑫的简历",
+      nowTime: TDate,
+      icons: {
+        pdf: "https://img.6h5.cn/xiexin.xin/pdf.jpeg"
+      },
       me: {
         avatar: "https://img.6h5.cn/xiexin.xin/WechatIMG640.png",
         name: "谢鑫",
@@ -292,8 +304,21 @@ export default {
 <style lang="scss" scoped>
 .view-page {
   .main {
+    .download-pdf {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 10px 20px;
+      box-sizing: border-box;
+      background-color: #ffffff;
+      cursor: pointer;
+      font-size: 14px;
+      img {
+        width: 50px;
+      }
+    }
     .content-1 {
-      width: 900px;
+      width: 950px;
       background-color: #ffffff;
       margin: auto;
       height: 1800px;
@@ -302,7 +327,7 @@ export default {
         vertical-align: top;
         text-align: left;
         &.left {
-          width: 260px;
+          width: 270px;
           background-color: #223e64;
           height: 100%;
           color: #ffffff;
@@ -385,7 +410,7 @@ export default {
           }
         }
         &.right {
-          width: 640px;
+          width: 680px;
           padding: 60px 60px 60px 30px;
           box-sizing: border-box;
           > div {

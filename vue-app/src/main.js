@@ -11,6 +11,9 @@ import router from './router';
 //   }
 // }
 
+import htmlToPdf from "./utils/html2pdf"
+Vue.use(htmlToPdf)
+
 Vue.config.productionTip = false
 
 new Vue({

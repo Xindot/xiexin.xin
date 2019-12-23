@@ -33,14 +33,17 @@ module.exports = {
     // 用cdn方式引入
     config.externals = {
       'vue': 'Vue',
-      'vuex': 'Vuex',
+      // 'vuex': 'Vuex',
       'vue-router': 'VueRouter',
-      'axios': 'axios',
-      'vconsole': 'VConsole',
-      'md5': 'md5',
-      'wx': 'jWeixin',
-      'mint-ui': 'MINT',
-      'vue-amap': 'VueAMap',
+      // 'axios': 'axios',
+      // 'vconsole': 'VConsole',
+      // 'md5': 'md5',
+      // 'wx': 'jWeixin',
+      // 'mint-ui': 'MINT',
+      // 'vue-amap': 'VueAMap',
+      'dayjs': 'dayjs',
+      'html2canvas': 'html2canvas',
+      'jspdf': 'jsPDF',
     }
     if (isProduction) {
       config.plugins.push(new CompressionWebpackPlugin({
