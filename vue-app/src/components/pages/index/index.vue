@@ -5,9 +5,9 @@
         <img :src="icons.pdf" alt="">
         <p>下载PDF{{doing?'中...':''}}</p>
       </div>
-      <div class="content-1" id="pdfCentent">
+      <div class="content-1" :class="blackMode?'black':'white'" id="pdfCentent">
         <!-- left -->
-        <div class="left">
+        <div class="left" @click="blackMode=!blackMode">
           <!-- 头像 -->
           <div class="avatar">
             <img :src="me.avatar" alt="">
@@ -159,6 +159,7 @@ export default {
         pdf: "https://img.6h5.cn/xiexin.xin/pdf.jpeg"
       },
       doing: false,
+      blackMode: true, // 夜晚模式
       me: {
         avatar: "https://img.6h5.cn/xiexin.xin/WechatIMG640.png",
         name: "谢鑫",
@@ -340,6 +341,13 @@ export default {
   },
   created() {
     // document.title = "谢鑫的简历-2019";
+    const hour = new Date().getHours();
+    // console.log(hour);
+    if (hour >= 6 && hour < 18) {
+      this.blackMode = false;
+    } else {
+      this.blackMode = true;
+    }
   },
   methods: {
     goPage(el, index) {
@@ -389,6 +397,23 @@ export default {
       background-color: #ffffff;
       margin: auto;
       height: 1800px;
+      &.white {
+        .left {
+          background-color: #dddddd;
+          color: #223e63;
+          .name {
+            background-color: rgba(255, 255, 255, 0.9);
+            color: rgb(34, 62, 99);
+          }
+          .me-info {
+            > p {
+              .s-2 {
+                border-bottom: solid 1px rgb(64, 94, 119);
+              }
+            }
+          }
+        }
+      }
       > div {
         display: inline-block;
         vertical-align: top;
@@ -557,9 +582,14 @@ export default {
 </style>
 
 <style scoped>
-.me-info > p a,
-.interest > p >>> a {
+.black .me-info > p a,
+.black .interest > p >>> a {
   color: #ffffff !important;
+  text-decoration: none;
+}
+.white .me-info > p a,
+.white .interest > p >>> a {
+  color: #223e63 !important;
   text-decoration: none;
 }
 </style>
