@@ -169,7 +169,7 @@ export default {
       doing: false,
       blackMode: true, // 夜晚模式
       me: {
-        avatar: "https://img.6h5.cn/xiexin.xin/xin-avatar.png",
+        avatar: "https://img.6h5.cn/xiexin.xin/xin-avatar-2.jpg",
         words: "程序没有好坏之分，程序员有。",
         name: "谢鑫",
         duty: "web前端开发工程师",
@@ -481,15 +481,15 @@ export default {
           .name {
             background-color: rgba(255, 255, 255, 0.9);
             color: rgb(34, 62, 99);
-            position: relative;
-            &:before {
-              content: "";
-              position: absolute;
-              border-left: solid 5px;
-              height: 100%;
-              left: 0;
-              top: 0;
-            }
+            // position: relative;
+            // &:before {
+            //   content: "";
+            //   position: absolute;
+            //   border-left: solid 5px;
+            //   height: 100%;
+            //   left: 0;
+            //   top: 0;
+            // }
           }
           .me-info {
             > p {
@@ -528,12 +528,12 @@ export default {
             opacity: 0.8;
             img {
               width: 110px;
-              height: 150px;
+              // height: 150px;
               border: solid 5px #ffffff;
             }
             p {
               font-size: 12px;
-              opacity: 0.8;
+              opacity: 0.6;
             }
           }
           .name {
