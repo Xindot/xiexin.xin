@@ -149,6 +149,7 @@
 // import dayjs from "dayjs";
 // const TDate = dayjs(new Date()).format("YYYYMMDDHHmmss");
 const TDate = "-" + new Date().getFullYear();
+const pwd = ~~window.location.href.includes("b1024");
 export default {
   data() {
     return {
@@ -181,7 +182,7 @@ export default {
           },
           {
             label: "手机号",
-            value: "18758885975",
+            value: ["187****5975", "18758885975"][pwd],
             type: "tel"
           },
           {
@@ -238,8 +239,8 @@ export default {
             value: "web前端开发工程师"
           },
           {
-            label: "薪资",
-            value: "20k - 25k"
+            label: "期望薪资",
+            value: ["****", "20k - 25k"][pwd]
           },
           {
             label: "地点",
