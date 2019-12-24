@@ -387,13 +387,15 @@ export default {
       right: 10px;
       padding: 10px 20px;
       box-sizing: border-box;
-      background-color: #ffffff;
+      background-color: #223e63;
+      color: #fff;
       cursor: pointer;
       font-size: 14px;
       box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
       border-radius: 18px;
       img {
         width: 50px;
+        border-radius: 50px;
       }
     }
     .content-1 {
@@ -408,6 +410,15 @@ export default {
           .name {
             background-color: rgba(255, 255, 255, 0.9);
             color: rgb(34, 62, 99);
+            position: relative;
+            &:before {
+              content: "";
+              position: absolute;
+              border-left: solid 5px;
+              height: 100%;
+              left: 0;
+              top: 0;
+            }
           }
           .me-info {
             > p {
