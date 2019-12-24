@@ -605,6 +605,25 @@ export default {
           box-sizing: border-box;
           > div {
             margin-bottom: 30px;
+            font-size: 15px;
+            > div {
+              p {
+                &.p-1 {
+                  font-size: 16px;
+                  font-weight: bold;
+                  color: #223e64;
+                }
+                &.p-2 {
+                  font-size: 15px;
+                  color: #333;
+                }
+                .s-1 {
+                  width: 140px;
+                  display: inline-block;
+                  margin-right: 10px;
+                }
+              }
+            }
             h2 {
               padding-bottom: 2px;
               margin-bottom: 10px;
@@ -640,24 +659,6 @@ export default {
                 margin-bottom: 12px;
                 .p-1 {
                   margin-bottom: 4px;
-                }
-              }
-            }
-            > div {
-              p {
-                font-size: 16px;
-                &.p-1 {
-                  font-weight: bold;
-                  color: #223e64;
-                }
-                &.p-2 {
-                  font-size: 15px;
-                  color: #333;
-                }
-                .s-1 {
-                  width: 140px;
-                  display: inline-block;
-                  margin-right: 10px;
                 }
               }
             }

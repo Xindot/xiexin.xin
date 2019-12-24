@@ -26,6 +26,7 @@ h6 {
 }
 body {
   background-color: #eeeeee;
+  font-size: 14px;
 }
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
