@@ -428,9 +428,11 @@ export default {
     }
   },
   mounted() {
-    const offsetHeight = document.getElementById("pdfCentent").offsetHeight;
-    document.getElementById("pdfCentent_left").style.height =
-      offsetHeight + "px";
+    if (deviceName == "pc") {
+      const offsetHeight = document.getElementById("pdfCentent").offsetHeight;
+      document.getElementById("pdfCentent_left").style.height =
+        offsetHeight + "px";
+    }
   },
   methods: {
     goPage(el, index) {
@@ -475,6 +477,18 @@ export default {
       img {
         width: 50px;
         border-radius: 50px;
+      }
+    }
+    @media screen and (max-width: 600px) {
+      .content-1 {
+        width: 100% !important;
+        .left {
+          width: 100% !important;
+          height: 100% !important;
+        }
+        .right {
+          display: none;
+        }
       }
     }
     .content-1 {
