@@ -1,7 +1,7 @@
 <template>
   <div class="view-page">
     <div class="main">
-      <div v-if="pdf.visible" class="download-pdf" :style="pdf.doing?'opacity:.5':''" @click="getPdf">
+      <div v-if="pdf.visible" class="download-pdf" :class="blackMode?'black':'white'" :style="pdf.doing?'opacity:.5':''" @click="getPdf">
         <img :src="pdf.icon" alt="">
         <p>下载PDF{{pdf.doing?'中...':''}}</p>
       </div>
@@ -158,12 +158,12 @@
 // const TDate = dayjs(new Date()).format("YYYYMMDDHHmmss");
 const TDate = "-" + new Date().getFullYear();
 const pwd = ~~window.location.href.includes("b1024");
-import { deviceName } from "@/const";
+import { deviceName, browserName } from "@/const";
 export default {
   data() {
     return {
       pdf: {
-        visible: false,
+        visible: true,
         htmlTitle: "谢鑫的简历",
         nowTime: TDate,
         icon: "https://img.6h5.cn/xiexin.xin/pdf.jpeg",
@@ -421,11 +421,6 @@ export default {
     } else {
       this.blackMode = true;
     }
-    if (deviceName == "pc") {
-      this.pdf.visible = true;
-    } else {
-      this.pdf.visible = false;
-    }
   },
   mounted() {
     if (deviceName == "pc") {
@@ -439,6 +434,10 @@ export default {
       this.tabSelectedIdx = index;
     },
     getPdf() {
+      if (browserName == "wx") {
+        alert("请在浏览器中使用导出");
+        return;
+      }
       this.pdf.doing = true;
       setTimeout(() => {
         this.pdf.doing = false;
@@ -474,6 +473,10 @@ export default {
       font-size: 14px;
       box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
       border-radius: 18px;
+      &.black {
+        background-color: #fff;
+        color: #223e63;
+      }
       img {
         width: 50px;
         border-radius: 50px;
