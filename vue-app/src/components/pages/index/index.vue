@@ -158,7 +158,7 @@
 // const TDate = dayjs(new Date()).format("YYYYMMDDHHmmss");
 const TDate = "-" + new Date().getFullYear();
 const pwd = ~~window.location.href.includes("b1024");
-import { deviceName, browserName } from "@/const";
+import { deviceName } from "@/const";
 export default {
   data() {
     return {
@@ -434,8 +434,8 @@ export default {
       this.tabSelectedIdx = index;
     },
     getPdf() {
-      if (browserName == "wx") {
-        alert("请在浏览器中使用导出");
+      if (deviceName != "pc") {
+        alert("请在PC端使用导出功能");
         return;
       }
       this.pdf.doing = true;
