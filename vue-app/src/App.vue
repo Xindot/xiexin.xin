@@ -119,4 +119,8 @@ textarea {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
+.bold {
+  font-weight: bold;
+}
 </style>
