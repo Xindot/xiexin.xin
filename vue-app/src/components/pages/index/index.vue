@@ -7,7 +7,7 @@
       </div>
       <div class="content-1" :class="blackMode?'black':'white'" id="pdfCentent">
         <!-- left -->
-        <div class="left" @click="blackMode=!blackMode">
+        <div class="left" @click="blackMode=!blackMode" id="pdfCentent_left">
           <!-- 头像 -->
           <div class="avatar">
             <img :src="me.avatar" alt="">
@@ -420,6 +420,11 @@ export default {
       this.blackMode = true;
     }
   },
+  mounted() {
+    const offsetHeight = document.getElementById("pdfCentent").offsetHeight;
+    document.getElementById("pdfCentent_left").style.height =
+      offsetHeight + "px";
+  },
   methods: {
     goPage(el, index) {
       this.tabSelectedIdx = index;
@@ -469,7 +474,6 @@ export default {
       width: 950px;
       background-color: #ffffff;
       margin: auto;
-      height: 2200px;
       &.white {
         .left {
           background-color: #dddddd;
@@ -503,7 +507,6 @@ export default {
         &.left {
           width: 270px;
           background-color: #223e64;
-          height: 100%;
           color: #ffffff;
           > div {
             padding: 20px;
