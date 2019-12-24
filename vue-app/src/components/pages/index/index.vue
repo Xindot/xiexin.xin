@@ -190,6 +190,10 @@ export default {
             label: "邮箱",
             value: "xinx@hz.cn",
             type: "email"
+          },
+          {
+            label: "证书",
+            value: "CET-4"
           }
         ]
       },
