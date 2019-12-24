@@ -1,9 +1,9 @@
 <template>
   <div class="view-page">
     <div class="main">
-      <div class="download-pdf" :style="doing?'opacity:.5':''" @click="getPdf">
-        <img :src="icons.pdf" alt="">
-        <p>下载PDF{{doing?'中...':''}}</p>
+      <div v-if="pdf.visible" class="download-pdf" :style="pdf.doing?'opacity:.5':''" @click="getPdf">
+        <img :src="pdf.icon" alt="">
+        <p>下载PDF{{pdf.doing?'中...':''}}</p>
       </div>
       <div class="content-1" :class="blackMode?'black':'white'" id="pdfCentent">
         <!-- left -->
@@ -158,15 +158,17 @@
 // const TDate = dayjs(new Date()).format("YYYYMMDDHHmmss");
 const TDate = "-" + new Date().getFullYear();
 const pwd = ~~window.location.href.includes("b1024");
+import { deviceName } from "@/const";
 export default {
   data() {
     return {
-      htmlTitle: "谢鑫的简历",
-      nowTime: TDate,
-      icons: {
-        pdf: "https://img.6h5.cn/xiexin.xin/pdf.jpeg"
+      pdf: {
+        visible: false,
+        htmlTitle: "谢鑫的简历",
+        nowTime: TDate,
+        icon: "https://img.6h5.cn/xiexin.xin/pdf.jpeg",
+        doing: false
       },
-      doing: false,
       blackMode: true, // 夜晚模式
       me: {
         avatar: "https://img.6h5.cn/xiexin.xin/xin-avatar-2.jpg",
@@ -419,6 +421,11 @@ export default {
     } else {
       this.blackMode = true;
     }
+    if (deviceName == "pc") {
+      this.pdf.visible = true;
+    } else {
+      this.pdf.visible = false;
+    }
   },
   mounted() {
     const offsetHeight = document.getElementById("pdfCentent").offsetHeight;
@@ -430,11 +437,11 @@ export default {
       this.tabSelectedIdx = index;
     },
     getPdf() {
-      this.doing = true;
+      this.pdf.doing = true;
       setTimeout(() => {
-        this.doing = false;
+        this.pdf.doing = false;
       }, 5000);
-      this.ExportSavePdf(this.htmlTitle, this.nowTime);
+      this.ExportSavePdf(this.pdf.htmlTitle, this.pdf.nowTime);
     },
     createQrCodeImg() {
       // // 生成的图片为base64
