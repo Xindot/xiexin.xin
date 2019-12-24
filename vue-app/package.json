@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build && rm -rf ../docs/*  && cp -a ./dist/* ../docs",
     "lint": "vue-cli-service lint",
     "pubNRP": "rsync -avz --delete ./dist root@www.nianran.net:/home/fe_group/nr_web_static/nianran_net/vue-app"
   },

@@ -223,7 +223,7 @@ export default {
       interest: {
         title: " ❀ 兴趣爱好 ❀ ",
         desc:
-          "喜欢书法、读书，平时写写技术博客，搭建了自己的个人博客：<a href='http://xindot.com' target='_blank'>xindot.com</a>"
+          "喜欢书法、读书，游泳、爬山、平时写写技术博客，也搭建了自定义的个人博客：<a href='http://xindot.com' target='_blank'>xindot.com</a>"
       },
       eResume: {
         visible: true,
@@ -369,6 +369,7 @@ export default {
   .main {
     .download-pdf {
       position: fixed;
+      z-index: 10;
       top: 10px;
       right: 10px;
       padding: 10px 20px;
@@ -496,19 +497,20 @@ export default {
               margin-bottom: 10px;
               color: #223e64;
               position: relative;
-              z-index: 2;
+              z-index: 1;
               &:after {
                 content: "";
                 position: absolute;
+                z-index: 0;
                 width: 100%;
                 left: 0;
                 top: 50%;
                 border-bottom: solid 3px #223e64;
-                z-index: 1;
+                transform: translateY(-50%);
               }
               > span {
                 position: relative;
-                z-index: 2;
+                z-index: 1;
                 background-color: #ffffff;
                 padding-right: 10px;
               }
