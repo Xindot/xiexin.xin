@@ -44,6 +44,7 @@ module.exports = {
       'dayjs': 'dayjs',
       'html2canvas': 'html2canvas',
       'jspdf': 'jsPDF',
+      // 'html2pdf': 'html2pdf'
     }
     if (isProduction) {
       config.plugins.push(new CompressionWebpackPlugin({

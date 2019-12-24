@@ -1,25 +1,34 @@
 <template>
   <div class="view-page">
     <div class="main">
-      <div class="download-pdf" @click="ExportSavePdf(htmlTitle,nowTime)">
+      <div class="download-pdf" :style="doing?'opacity:.5':''" @click="getPdf">
         <img :src="icons.pdf" alt="">
-        <p>下载PDF</p>
+        <p>下载PDF{{doing?'中...':''}}</p>
       </div>
       <div class="content-1" id="pdfCentent">
+        <!-- left -->
         <div class="left">
+          <!-- 头像 -->
           <div class="avatar">
             <img :src="me.avatar" alt="">
           </div>
+          <!-- 姓名 -->
           <div class="name">
             <h1>{{me.name}}</h1>
             <p>{{me.duty}}</p>
           </div>
+          <!-- 个人信息 -->
           <div class="me-info">
             <p v-for="(item,index) in me.list" :key="index">
               <span class="s-1">{{item.label}}</span>：
-              <span class="s-2">{{item.value}}</span>
+              <span class="s-2">
+                <a v-if="item.type=='tel'" :href="'tel:'+item.value">{{item.value}}</a>
+                <a v-else-if="item.type=='email'" :href="'mailto:'+item.value">{{item.value}}</a>
+                <span v-else>{{item.value}}</span>
+              </span>
             </p>
           </div>
+          <!-- 专业技能 -->
           <div class="skill">
             <h3>{{skill.title}}</h3>
             <div v-for="(item,index) in skill.list" :key="index">
@@ -32,20 +41,35 @@
               </p>
             </div>
           </div>
+          <!-- 兴趣爱好 -->
           <div class="interest">
             <h3>{{interest.title}}</h3>
-            <p>{{interest.desc}}</p>
+            <p v-html="interest.desc"></p>
+          </div>
+          <!-- 电子简历 -->
+          <div class="e-resume">
+            <h3>{{eResume.title}}</h3>
+            <p>
+              <img :src="eResume.img" alt="">
+            </p>
           </div>
         </div>
+        <!-- right -->
         <div class="right">
+          <!-- 求职意向 -->
           <div class="intention">
-            <h2>{{intention.title}}</h2>
+            <h2>
+              <span>{{intention.title}}</span>
+            </h2>
             <div v-for="(item,index) in intention.list" :key="index">
               <span>➢ {{item.label}}：{{item.value}}</span>
             </div>
           </div>
+          <!-- 教育背景 -->
           <div class="edu">
-            <h2>{{edu.title}}</h2>
+            <h2>
+              <span>{{edu.title}}</span>
+            </h2>
             <div v-for="(item,index) in edu.list" :key="index">
               <p>
                 <span class="s-1">{{item.time}}</span>
@@ -54,8 +78,11 @@
               </p>
             </div>
           </div>
+          <!-- 工作经历 -->
           <div class="work">
-            <h2>{{work.title}}</h2>
+            <h2>
+              <span>{{work.title}}</span>
+            </h2>
             <div v-for="(item,index) in work.list" :key="index">
               <p class="p-1">
                 <span class="s-1">{{item.time}}</span>
@@ -66,8 +93,11 @@
               <p class="p-2">工作内容：</p>
             </div>
           </div>
+          <!-- 实践经历 -->
           <div class="practice">
-            <h2>{{practice.title}}</h2>
+            <h2>
+              <span>{{practice.title}}</span>
+            </h2>
             <div v-for="(item,index) in practice.list" :key="index">
               <p class="p-1">
                 <span class="s-1">{{item.time}}</span>
@@ -77,8 +107,11 @@
               <p class="p-2">工作内容：</p>
             </div>
           </div>
+          <!-- 项目经历 -->
           <div class="project">
-            <h2>{{project.title}}</h2>
+            <h2>
+              <span>{{project.title}}</span>
+            </h2>
             <div v-for="(item,index) in project.list" :key="index">
               <p class="p-1">
                 <span class="s-1">{{item.time}}</span>
@@ -89,14 +122,18 @@
               <p class="p-2">工作内容：</p>
             </div>
           </div>
-
+          <!-- 获奖经历 -->
           <div class="awards">
-            <h2>{{awards.title}}</h2>
+            <h2>
+              <span>{{awards.title}}</span>
+            </h2>
             <p v-for="(item,index) in awards.list" :key="index">{{item}}</p>
           </div>
-
+          <!-- 自我评价 -->
           <div class="assessment">
-            <h2>{{assessment.title}}</h2>
+            <h2>
+              <span>{{assessment.title}}</span>
+            </h2>
             <p v-for="(item,index) in assessment.list" :key="index">{{item}}</p>
           </div>
 
@@ -107,6 +144,8 @@
 </template>
 
 <script>
+// const QR = require("@/utils/wxqrcode");
+// import QR from "@/utils/wxqrcode";
 // import dayjs from "dayjs";
 // const TDate = dayjs(new Date()).format("YYYYMMDDHHmmss");
 const TDate = "-" + new Date().getFullYear();
@@ -118,6 +157,7 @@ export default {
       icons: {
         pdf: "https://img.6h5.cn/xiexin.xin/pdf.jpeg"
       },
+      doing: false,
       me: {
         avatar: "https://img.6h5.cn/xiexin.xin/WechatIMG640.png",
         name: "谢鑫",
@@ -141,16 +181,18 @@ export default {
           },
           {
             label: "手机号",
-            value: "18758885975"
+            value: "18758885975",
+            type: "tel"
           },
           {
             label: "邮箱",
-            value: "xinx@hz.cn"
+            value: "xinx@hz.cn",
+            type: "email"
           }
         ]
       },
       skill: {
-        title: "专业技能",
+        title: " ❀ 专业技能 ❀ ",
         list: [
           {
             label: "HTML",
@@ -179,12 +221,17 @@ export default {
         ]
       },
       interest: {
-        title: "兴趣爱好",
+        title: " ❀ 兴趣爱好 ❀ ",
         desc:
-          "喜欢书法、读书，平时写写技术博客，搭建了自己的个人博客：xindot.com"
+          "喜欢书法、读书，平时写写技术博客，搭建了自己的个人博客：<a href='http://xindot.com' target='_blank'>xindot.com</a>"
+      },
+      eResume: {
+        visible: true,
+        title: " ❀ 电子简历 ❀ ",
+        img: "https://img.6h5.cn/xiexin.xin/1577155712.png"
       },
       intention: {
-        title: "求职意向",
+        title: " ❀ 求职意向",
         list: [
           {
             label: "岗位",
@@ -205,7 +252,7 @@ export default {
         ]
       },
       edu: {
-        title: "教育背景",
+        title: " ❀ 教育背景",
         list: [
           {
             time: "2010.9 - 2014.6",
@@ -230,7 +277,7 @@ export default {
         ]
       },
       work: {
-        title: "工作经历",
+        title: " ❀ 工作经历",
         list: [
           {
             time: "2017.2 至今",
@@ -253,7 +300,7 @@ export default {
         ]
       },
       practice: {
-        title: "实践经验",
+        title: " ❀ 实践经历",
         list: [
           {
             time: "2019.7 - 2019.12",
@@ -265,7 +312,7 @@ export default {
         ]
       },
       project: {
-        title: "项目经验",
+        title: " ❀ 项目经历",
         list: [
           {
             time: "2019.7 - 2019.12",
@@ -277,11 +324,11 @@ export default {
         ]
       },
       awards: {
-        title: "获奖经历",
+        title: " ❀ 获奖经历",
         list: ["1、获得了XX奖项", "2、取得了XX荣誉"]
       },
       assessment: {
-        title: "自我评价",
+        title: " ❀ 自我评价",
         list: [
           "1、个人技能、知识描述",
           "2、个人能力、特长描述",
@@ -291,11 +338,27 @@ export default {
     };
   },
   created() {
-    // document.title = "念然网络 NianRan.Net";
+    // document.title = "谢鑫的简历-2019";
   },
   methods: {
     goPage(el, index) {
       this.tabSelectedIdx = index;
+    },
+    getPdf() {
+      this.doing = true;
+      setTimeout(() => {
+        this.doing = false;
+      }, 5000);
+      this.ExportSavePdf(this.htmlTitle, this.nowTime);
+    },
+    createQrCodeImg() {
+      // // 生成的图片为base64
+      // let img = QR.createQrCodeImg(window.location.origin, {
+      //   size: parseInt(300)
+      // });
+      // // console.log(img);
+      // this.eResume.img = img;
+      // this.eResume.visible = true;
     }
   }
 };
@@ -305,7 +368,7 @@ export default {
 .view-page {
   .main {
     .download-pdf {
-      position: absolute;
+      position: fixed;
       top: 10px;
       right: 10px;
       padding: 10px 20px;
@@ -313,6 +376,8 @@ export default {
       background-color: #ffffff;
       cursor: pointer;
       font-size: 14px;
+      box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+      border-radius: 18px;
       img {
         width: 50px;
       }
@@ -340,7 +405,8 @@ export default {
               height: 34px;
               line-height: 34px;
               margin-bottom: 20px;
-              padding-left: 10px;
+              // padding-left: 10px;
+              text-align: center;
             }
           }
           .avatar {
@@ -408,6 +474,16 @@ export default {
               }
             }
           }
+          .e-resume {
+            > p {
+              text-align: center;
+              img {
+                width: 45%;
+                display: inline-block;
+                border: solid 5px #ffffff;
+              }
+            }
+          }
         }
         &.right {
           width: 680px;
@@ -416,10 +492,26 @@ export default {
           > div {
             margin-bottom: 30px;
             h2 {
-              border-bottom: solid 3px #223e64;
               padding-bottom: 2px;
               margin-bottom: 10px;
               color: #223e64;
+              position: relative;
+              z-index: 2;
+              &:after {
+                content: "";
+                position: absolute;
+                width: 100%;
+                left: 0;
+                top: 50%;
+                border-bottom: solid 3px #223e64;
+                z-index: 1;
+              }
+              > span {
+                position: relative;
+                z-index: 2;
+                background-color: #ffffff;
+                padding-right: 10px;
+              }
             }
             &.intention {
               > div {
@@ -458,5 +550,13 @@ export default {
       }
     }
   }
+}
+</style>
+
+<style scoped>
+.me-info > p a,
+.interest > p >>> a {
+  color: #ffffff !important;
+  text-decoration: none;
 }
 </style>
