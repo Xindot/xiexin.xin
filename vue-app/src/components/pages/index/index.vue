@@ -23,8 +23,7 @@
             <p v-for="(item,index) in me.list" :key="index">
               <span class="s-1">{{item.label}}</span>：
               <span class="s-2">
-                <a v-if="item.type=='tel'" :href="'tel:'+item.value">{{item.value}}</a>
-                <a v-else-if="item.type=='email'" :href="'mailto:'+item.value">{{item.value}}</a>
+                <a v-if="item.href" :href="item.href" target="_blank">{{item.value}}</a>
                 <span v-else>{{item.value}}</span>
               </span>
             </p>
@@ -186,21 +185,23 @@ export default {
           },
           {
             label: "毕业学校",
-            value: "杭州师范大学"
+            value: "杭州师范大学",
+            href: "http://www.hznu.edu.cn"
           },
           {
             label: "学院专业",
-            value: "理学院应用物理学"
+            value: "理学院应用物理学",
+            href: "http://lxy.hznu.edu.cn"
           },
           {
             label: "手机号",
             value: ["187****5975", "18758885975"][pwd],
-            type: "tel"
+            href: pwd ? "tel:18758885975" : null
           },
           {
             label: "邮箱",
             value: "xinx@hz.cn",
-            type: "email"
+            href: "mailto:xinx@hz.cn"
           },
           {
             label: "证书",
