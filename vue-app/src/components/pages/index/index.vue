@@ -15,8 +15,10 @@
           </div>
           <!-- 姓名 -->
           <div class="name">
-            <h1>{{me.name}}</h1>
-            <p>{{me.duty}}</p>
+            <div>
+              <h1>{{me.name}}</h1>
+              <p>{{me.duty}}</p>
+            </div>
           </div>
           <!-- 个人信息 -->
           <div class="me-info">
@@ -504,17 +506,16 @@ export default {
           background-color: #dddddd;
           color: #223e63;
           .name {
-            background-color: rgba(255, 255, 255, 0.9);
-            color: rgb(34, 62, 99);
-            // position: relative;
-            // &:before {
-            //   content: "";
-            //   position: absolute;
-            //   border-left: solid 5px;
-            //   height: 100%;
-            //   left: 0;
-            //   top: 0;
-            // }
+            position: relative;
+            &:after {
+              background-color: #405e77;
+              border: solid 1px #405e77;
+            }
+            > div {
+              background-color: #ffffff;
+              color: rgb(64, 94, 119);
+              border: solid 1px #405e77;
+            }
           }
           .me-info {
             > p {
@@ -563,13 +564,32 @@ export default {
           }
           .name {
             text-align: center;
-            background-color: rgba(96, 125, 139, 0.5);
-            color: rgba(255, 255, 255, 0.9);
-            padding: 20px 0;
+            padding: 0;
             box-sizing: border-box;
             margin-bottom: 20px;
-            p {
-              opacity: 0.7;
+            position: relative;
+            &:after {
+              content: "";
+              position: absolute;
+              top: 0;
+              left: 0;
+              background-color: rgba(255, 255, 255, 0.8);
+              border: solid 1px #223e63;
+              width: 100%;
+              height: 100%;
+              z-index: 0;
+              transform: rotate(5deg);
+            }
+            > div {
+              background-color: #405e77;
+              border: solid 1px #405e77;
+              color: #fff;
+              padding: 20px 0;
+              position: relative;
+              z-index: 1;
+              p {
+                opacity: 0.7;
+              }
             }
           }
           .me-info {
