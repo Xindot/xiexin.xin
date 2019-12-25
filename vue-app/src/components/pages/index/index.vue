@@ -436,7 +436,7 @@ export default {
     },
     getPdf() {
       if (deviceName != "pc") {
-        alert("请在PC端使用导出功能");
+        alert("请在PC端使用此功能");
         return;
       }
       this.pdf.doing = true;
