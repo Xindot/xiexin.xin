@@ -127,6 +127,9 @@
                 <span class="bold">项目介绍：</span>{{item.projectDesc}}</p>
               <p class="p-2">
                 <span class="bold">工作内容：</span>{{item.dutyDesc}}</p>
+              <p v-if="item.remark">
+                <span class="bold">备注说明：</span>{{item.remark}}
+              </p>
             </div>
           </div>
           <!-- 获奖经历 -->
@@ -145,13 +148,11 @@
               <span v-html="item"></span>
             </p>
           </div>
-
         </div>
       </div>
     </div>
   </div>
 </template>
-
 <script>
 // const QR = require("@/utils/wxqrcode");
 // import QR from "@/utils/wxqrcode";
@@ -173,7 +174,7 @@ export default {
       blackMode: true, // 夜晚模式
       me: {
         avatar: "https://img.6h5.cn/xiexin.xin/xin-avatar-2.jpg",
-        words: "程序没有好坏之分，程序员有。",
+        words: "简单不先于复杂，而是再复杂之后。",
         name: "谢鑫",
         duty: "web前端开发工程师",
         list: [
@@ -295,7 +296,7 @@ export default {
         title: " ❀ 工作经历",
         list: [
           {
-            time: "2017.2 至今",
+            time: "2017.2 - 2021.8",
             company: "浙江聚励云机械科技有限公司",
             duty: "web前端负责人/项目经理",
             companyDesc:
@@ -340,11 +341,28 @@ export default {
         title: " ❀ 项目经历",
         list: [
           {
-            time: "2019.11 至今",
+            time: "2020.9 - 2021.8",
+            project: "加油贷项目：pc管理后台+h5客户端",
+            duty: "web前端",
+            projectDesc: "为加油商及加油客户提供金融解决方案",
+            dutyDesc:
+              "主要使用react + ant.design + react-router搭建管理后台，其中使用umi对项目进行本地运行和打包。"
+          },
+          {
+            time: "2020.4 - 2020.8",
+            project: "奶茶项目：小程序+pc后台+h5管理",
+            duty: "web前端+Node",
+            projectDesc: "为奶茶总部提供一整套点单加盟解决方案",
+            dutyDesc:
+              "实现微信点单小程序，主要功能点:微信下单支付、订阅推送、各种优惠券的使用、云打印机对接等功能；实现总部管理后台：用户统计、订单统计、结算统计、门店统计、销量统计等，实现订单处理、加盟处理、门店管理等系统功能；实现进货系统：进货商申请、进货单处理等。",
+            remark: "周末时间完成"
+          },
+          {
+            time: "2019.11 - 2020.3",
             project: "智慧工地项目：pc管理后台",
             duty: "web前端",
             projectDesc: "为工地管理方提供一站式软硬件服务",
-            dutyDesc: "vue-cli3 + element-ui + vue-router + axios。"
+            dutyDesc: "vue-cli3 + element-ui + vue-router + axios"
           },
           {
             time: "2019.7 - 2019.12",
@@ -459,7 +477,6 @@ export default {
   }
 };
 </script>
-
 <style lang="scss" scoped>
 .view-page {
   .main {
@@ -476,47 +493,58 @@ export default {
       font-size: 14px;
       box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
       border-radius: 18px;
+
       &.black {
         background-color: #fff;
         color: #223e63;
       }
+
       img {
         width: 50px;
         border-radius: 50px;
       }
     }
+
     @media screen and (max-width: 600px) {
       .content-1 {
         width: 100% !important;
+
         .left {
           width: 100% !important;
           height: 100% !important;
         }
+
         .right {
           display: none;
         }
       }
     }
+
     .content-1 {
       width: 950px;
       background-color: #ffffff;
       margin: auto;
+
       &.white {
         .left {
           background-color: #dddddd;
           color: #223e63;
+
           .name {
             position: relative;
+
             &:after {
               background-color: #405e77;
               border: solid 1px #405e77;
             }
+
             > div {
               background-color: #ffffff;
               color: rgb(64, 94, 119);
               border: solid 1px #405e77;
             }
           }
+
           .me-info {
             > p {
               .s-2 {
@@ -526,17 +554,21 @@ export default {
           }
         }
       }
+
       > div {
         display: inline-block;
         vertical-align: top;
         text-align: left;
+
         &.left {
           width: 270px;
           background-color: #223e64;
           color: #ffffff;
+
           > div {
             padding: 20px;
             box-sizing: border-box;
+
             h3 {
               color: #fff;
               background: #405e77;
@@ -547,27 +579,32 @@ export default {
               text-align: center;
             }
           }
+
           .avatar {
             text-align: center;
             padding: 50px 0;
             box-sizing: border-box;
             opacity: 0.8;
+
             img {
               width: 110px;
               // height: 150px;
               border: solid 5px #ffffff;
             }
+
             p {
               font-size: 12px;
               opacity: 0.6;
             }
           }
+
           .name {
             text-align: center;
             padding: 0;
             box-sizing: border-box;
             margin-bottom: 20px;
             position: relative;
+
             &:after {
               content: "";
               position: absolute;
@@ -580,6 +617,7 @@ export default {
               z-index: 0;
               transform: rotate(5deg);
             }
+
             > div {
               background-color: #405e77;
               border: solid 1px #405e77;
@@ -587,43 +625,53 @@ export default {
               padding: 20px 0;
               position: relative;
               z-index: 1;
+
               p {
                 opacity: 0.7;
               }
             }
           }
+
           .me-info {
             > p {
               margin-bottom: 10px;
               font-size: 15px;
+
               .s-1 {
                 display: inline-block;
                 width: 60px;
                 text-align: justify;
                 text-align-last: justify;
               }
+
               .s-2 {
                 display: inline-block;
                 border-bottom: solid 1px rgba(255, 255, 255, 0.5);
               }
             }
           }
+
           .skill {
             div {
               margin-bottom: 10px;
+
               .p-1 {
                 font-size: 14px;
+
                 .s-1 {
                   margin-right: 20px;
                   display: inline-block;
                 }
+
                 .s-2 {
                   opacity: 0.8;
                 }
               }
+
               .p-2 {
                 background-color: #405e77;
                 height: 10px;
+
                 > span {
                   display: inline-block;
                   height: 100%;
@@ -633,9 +681,11 @@ export default {
               }
             }
           }
+
           .e-resume {
             > p {
               text-align: center;
+
               img {
                 width: 45%;
                 display: inline-block;
@@ -644,13 +694,16 @@ export default {
             }
           }
         }
+
         &.right {
           width: 680px;
           padding: 60px 60px 60px 30px;
           box-sizing: border-box;
+
           > div {
             margin-bottom: 30px;
             font-size: 15px;
+
             > div {
               p {
                 &.p-1 {
@@ -658,10 +711,12 @@ export default {
                   font-weight: bold;
                   color: #223e64;
                 }
+
                 &.p-2 {
                   font-size: 15px;
                   color: #333;
                 }
+
                 .s-1 {
                   width: 140px;
                   display: inline-block;
@@ -669,12 +724,14 @@ export default {
                 }
               }
             }
+
             h2 {
               padding-bottom: 2px;
               margin-bottom: 10px;
               color: #223e64;
               position: relative;
               z-index: 1;
+
               &:after {
                 content: "";
                 position: absolute;
@@ -685,6 +742,7 @@ export default {
                 border-bottom: solid 3px #223e64;
                 transform: translateY(-50%);
               }
+
               > span {
                 position: relative;
                 z-index: 1;
@@ -692,16 +750,19 @@ export default {
                 padding-right: 10px;
               }
             }
+
             &.intention {
               > div {
                 display: inline-block;
                 width: 50%;
               }
             }
+
             &.work,
             &.project {
               > div {
                 margin-bottom: 12px;
+
                 .p-1 {
                   margin-bottom: 4px;
                 }
@@ -714,18 +775,19 @@ export default {
   }
 }
 </style>
-
 <style scoped>
 .black .me-info > p a,
 .black .interest > p >>> a {
   color: #ffffff !important;
   text-decoration: none;
 }
+
 .white .me-info > p a,
 .white .interest > p >>> a {
   color: #223e63 !important;
   text-decoration: none;
 }
+
 .assessment p >>> a {
   text-decoration: none !important;
   color: inherit;

@@ -4,7 +4,7 @@ import jsPDF from "jspdf"
 
 export default {
   install(Vue) {
-    Vue.prototype.ExportSavePdf = function (htmlTitle, currentTime) {
+    Vue.prototype.ExportSavePdf = function(htmlTitle, currentTime) {
       var element = document.getElementById("pdfCentent")
 
       var width = element.offsetWidth;
@@ -30,7 +30,7 @@ export default {
         height: height,
         dpi: window.devicePixelRatio * 2
       }
-      html2canvas(element, options).then(function (canvas) {
+      html2canvas(element, options).then(function(canvas) {
         // console.log('canvas=>', canvas)
         var pdf = new jsPDF("p", "mm", "a4") // A4纸，纵向
         var ctx = canvas.getContext("2d")
