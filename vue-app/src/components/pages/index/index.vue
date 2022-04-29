@@ -179,7 +179,7 @@ export default {
       blackMode: true, // 夜晚模式
       me: {
         avatar:
-          "https://x-cdn.oss-accelerate.aliyuncs.com/img/nran_work/xiexin.xin/img/xin-avatar-2.jpg",
+          "https://x-cdn.oss-accelerate.aliyuncs.com/img/nran_work/xiexin.xin/img/xin-avatar-2.jpeg",
         words: "简单不先于复杂，而是再复杂之后。",
         name: "谢鑫",
         duty: "web前端开发工程师",
