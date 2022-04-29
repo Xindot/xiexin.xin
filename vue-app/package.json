@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "pubGit": "git status && git add -A && git status && git commit -am 'gx' && git status && git push origin master && git status",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build && rm -rf ../docs/*  && cp -a ./dist/* ../docs",
     "lint": "vue-cli-service lint",
